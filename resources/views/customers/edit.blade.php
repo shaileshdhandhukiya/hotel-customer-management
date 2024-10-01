@@ -5,6 +5,11 @@
         </h2>
     </x-slot>
     <div class="container mx-auto mt-10">
+
+        <div class="mb-4">
+            <a href="{{ route('customers.index') }}" class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">Back to Customers</a>
+        </div>
+
         <form action="{{ route('customers.update', $customer) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow">
             @csrf
             @method('PUT')
@@ -27,7 +32,7 @@
                 <label class="block text-gray-700">Vehicle Number</label>
                 <input type="text" name="vehicle_number" class="mt-1 block w-full border-gray-300 rounded" value="{{ $customer->vehicle_number }}" required>
             </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Customer</button>
+            <button type="submit" class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">Update Customer</button>
         </form>
     </div>
 </x-app-layout>

@@ -125,7 +125,6 @@
         }
     </script>
 
-
     <style>
         .dataTables_paginate a {
             @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-white hover:bg-gray-200 transition ease-in-out duration-150;
