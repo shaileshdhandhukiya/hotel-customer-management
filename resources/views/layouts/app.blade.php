@@ -27,15 +27,15 @@
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex space-between">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between">
                 {{ $header }}
 
                 <form action="{{ route('customers.index') }}" method="GET" class="flex w-2/5">
-                        <input type="text" name="search" placeholder="Search customers..."
-                            class="border-gray-300 rounded-l px-4 py-2 w-full"
-                            value="{{ request('search') }}">
-                        <button type="submit" class="bg-black-500 bg-black text-white px-4 py-2 rounded-r">Search</button>
-                    </form>
+                    <input type="text" name="search" placeholder="Search customers..."
+                        class="border-gray-300 rounded-l px-4 py-2 w-full"
+                        value="{{ request('search') }}">
+                    <button type="submit" class="bg-black-500 bg-black text-white px-4 py-2 rounded-r">Search</button>
+                </form>
             </div>
         </header>
         @endif

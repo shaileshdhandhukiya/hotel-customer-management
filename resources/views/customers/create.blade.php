@@ -6,6 +6,9 @@
     </x-slot>
 
     <div class="container mx-auto mt-10">
+
+    @include('layouts.alert')
+    
         <div class="rounded-lg bg-white p-8 shadow-lg lg:p-12">
             <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
@@ -57,8 +60,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <button
-                        type="submit"
+                    <button type="submit"
                         class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
                         Add Customer
                     </button>

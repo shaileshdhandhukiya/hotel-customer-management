@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+img{
+    cursor: pointer;
+}
+
+.close-image-btn{
+    color: red;
+    font-size: 45px;
+}
+
+/* footer{
+    bottom: 0px !important;
+    position: absolute;
+    width: 100%;
+} */

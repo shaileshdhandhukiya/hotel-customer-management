@@ -16,12 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    @if(Auth::user()->type === 'admin')
                     <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers')">
                         {{ __('Customers') }}
                     </x-nav-link>
-
-                   
-
+                    @endif
                 </div>
             </div>
 

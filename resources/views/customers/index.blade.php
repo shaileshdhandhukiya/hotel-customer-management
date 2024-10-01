@@ -5,18 +5,7 @@
         </h2>
     </x-slot>
 
-    @if (session('success'))
-        <div class="flex items-center justify-between bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <strong class="font-bold">Success!</strong>
-            <span class="block sm:inline">{{ session('success') }}</span>
-            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none'">
-                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <title>Close</title>
-                    <path d="M10 9l-1-1-3 3 1 1 3-3zm0 0l1-1 3 3-1 1-3-3zm0-8c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10z"/>
-                </svg>
-            </span>
-        </div>
-    @endif
+    @include('layouts.alert')
 
     <div class="container mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-4">Customers</h1>
@@ -27,17 +16,9 @@
             justify-content: space-between;
             align-items: center;
         ">
-            <form action="{{ route('customers.index') }}" method="GET" class="flex w-2/5">
-                <input type="text" name="search" placeholder="Search customers..."
-                    class="border-gray-300 rounded-l px-4 py-2 w-full"
-                    value="{{ request('search') }}">
-                <button type="submit" class="bg-black-500 bg-black text-white px-4 py-2 rounded-r">Search</button>
-            </form>
 
             <a href="{{ route('customers.create') }}" class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">Add Customer</a>
-        </div>
-
-        
+        </div>        
 
         <div class="overflow-x-auto mt-5">
             <table id="customersTable" class="min-w-full bg-white border border-gray-300">
@@ -59,7 +40,9 @@
                         <td class="py-2 px-4 border-b">{{ $customer->name }}</td>
                         <td class="py-2 px-4 border-b">{{ $customer->mobile_number }}</td>
                         <td class="py-2 px-4 border-b">
-                            <img src="{{ Storage::url($customer->ID_card_image) }}" alt="ID Card" class="inline-block h-6 w-6 rounded-full ring-2 ring-white">
+                            <img src="{{ Storage::url($customer->ID_card_image) }}" alt="ID Card" class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                            onclick="openImageModal('{{ Storage::url($customer->ID_card_image) }}')" 
+                            >
                         </td>
                         <td class="py-2 px-4 border-b">{{ $customer->vehicle_number }}</td>
                         <td class="py-2 px-4 border-b">
@@ -94,6 +77,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
     <script>
+         // Auto-hide the success message after 5 seconds
+        setTimeout(function() {
+            const alertBox = document.querySelector('.alert-success');
+            if (alertBox) {
+                alertBox.style.display = 'none';
+            }
+        }, 5000); // 5 seconds
+        
         $(document).ready(function() {
             $('#customersTable').DataTable({
                 pagingType: "full_numbers", // Use full numbers for pagination
@@ -164,3 +155,26 @@
         }
     </style>
 </x-app-layout>
+
+<!-- Image Modal -->
+<div id="imageModal" class="fixed inset-0 hidden bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="relative">
+        <button onclick="closeImageModal()" class="absolute top-2 right-2 text-white text-xl close-image-btn">&times;</button>
+        <img id="modalImage" src="" class="max-w-full max-h-screen rounded-lg shadow-lg" alt="Full Image">
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function openImageModal(imageUrl) {
+        // Set the src attribute of the modal image
+        document.getElementById('modalImage').src = imageUrl;
+        // Show the modal
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeImageModal() {
+        // Hide the modal
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+</script>
