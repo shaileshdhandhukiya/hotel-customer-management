@@ -22,6 +22,18 @@
                 <strong>ID Card:</strong>
                 <img src="{{ $customer->ID_card_image_url }}" alt="ID Card" class="w-20 h-auto" onclick="openImageModal('{{ Storage::url($customer->ID_card_image) }}')">
             </div>
+
+            <div class="mb-4">
+                <h3>Additional ID Cards:</h3>
+                @if($customer->additional_ID_cards_urls && count($customer->additional_ID_cards_urls) > 0)
+                @foreach($customer->additional_ID_cards_urls as $url)
+                <img src="{{ $url }}" alt="Additional ID Card" width="200" onclick="openImageModal('{{ $url }}')">
+                @endforeach
+                @else
+                <p>No additional ID cards uploaded.</p>
+                @endif
+
+            </div>
             <div class="mb-4">
                 <strong>Vehicle Number:</strong> {{ $customer->vehicle_number }}
             </div>

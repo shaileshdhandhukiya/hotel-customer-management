@@ -33,7 +33,7 @@ This project is a Customer Management System built using **Laravel 10** for the 
 
 1. **Clone the repository:**
 
-   <code>git clone https://github.com/yourusername/customer-management-system.git</code>
+   <code>git clone https://github.com/shaileshdhandhukiya/customer-management-system.git</code>
 
 2. **Navigate to the project directory:**
 

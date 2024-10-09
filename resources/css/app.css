@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 
-img{
+img {
     cursor: pointer;
 }
 
-.close-image-btn{
+.close-image-btn {
     color: red;
     font-size: 45px;
 }
@@ -17,3 +17,5 @@ img{
     position: absolute;
     width: 100%;
 } */
+
+@media screen and (max-width: 768px) {}

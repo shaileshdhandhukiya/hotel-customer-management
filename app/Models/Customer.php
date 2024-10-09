@@ -11,7 +11,12 @@ class Customer extends Model
     protected $fillable = [
         'name',
         'mobile_number',
-        'ID_card_image', // Make sure this field is fillable
+        'ID_card_image',
         'vehicle_number',
+        'additional_ID_cards', 
+    ];
+
+    protected $casts = [
+        'additional_ID_cards' => 'array', // Add this line
     ];
 }

@@ -7,9 +7,9 @@
 
     <div class="container mx-auto mt-10">
 
-    @include('layouts.alert')
-    
-    <div class="mb-4">
+        @include('layouts.alert')
+
+        <div class="mb-4">
             <a href="{{ route('customers.index') }}" class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">Back to Customers</a>
         </div>
 
@@ -25,8 +25,7 @@
                         type="text"
                         name="name"
                         id="name"
-                        required
-                    />
+                        required />
                 </div>
 
                 <div>
@@ -37,8 +36,7 @@
                         type="text"
                         name="mobile_number"
                         id="mobile_number"
-                        required
-                    />
+                        required />
                 </div>
 
                 <div>
@@ -48,9 +46,21 @@
                         type="file"
                         name="ID_card_image"
                         id="ID_card_image"
-                        required
-                    />
+                        required />
                 </div>
+
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700" for="ID_card_image">Additional ID Card</label>
+                    <input 
+                        type="file" 
+                        class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                        name="additional_ID_cards[]" id="additional_ID_cards" 
+                        class="form-control"
+                        multiple>
+                    <small class="form-text text-muted">You can upload multiple additional ID card images.</small>
+                </div>
+
 
                 <div>
                     <label class="sr-only" for="vehicle_number">Vehicle Number</label>
@@ -60,8 +70,7 @@
                         type="text"
                         name="vehicle_number"
                         id="vehicle_number"
-                        required
-                    />
+                        required />
                 </div>
 
                 <div class="mt-4">
@@ -74,3 +83,9 @@
         </div>
     </div>
 </x-app-layout>
+
+<style>
+    .container{
+        width: 1100px !important;
+    }
+</style>

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,13 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
+
+    // Clear Laravel caches
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+
     return view('welcome');
 });
 
@@ -30,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('customers', CustomerController::class);
+    Route::delete('/customers/{customer}/additional-id-card/{index}', [CustomerController::class, 'deleteAdditionalIDCard'])->name('customers.deleteAdditionalIDCard');
 });
 
 require __DIR__.'/auth.php';

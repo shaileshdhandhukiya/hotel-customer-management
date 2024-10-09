@@ -28,6 +28,32 @@
                 <img src="{{ Storage::url($customer->ID_card_image) }}" alt="ID Card" class="w-20 h-auto mt-2">
                 @endif
             </div>
+
+            <div class="mb-4">
+                <label for="additional_ID_cards">Additional ID Cards</label>
+                <input type="file" name="additional_ID_cards[]" id="additional_ID_cards" class="form-control" multiple>
+                <small class="form-text text-muted">You can upload multiple additional ID card images.</small>
+            </div>
+
+            @if($customer->additional_ID_cards_urls)
+            <div class="form-group">
+                <label>Existing Additional ID Cards:</label>
+                <div>
+                    @foreach($customer->additional_ID_cards_urls as $index => $url)
+                    <div style="display: inline-block; margin-right: 10px; text-align: center;">
+                        <img src="{{ $url }}" alt="Additional ID Card" width="100"><br>
+                        <!-- Optional: Add a delete button for each additional ID card -->
+                        <form action="{{ route('customers.deleteAdditionalIDCard', [$customer->id, $index]) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
             <div class="mb-4">
                 <label class="block text-gray-700">Vehicle Number</label>
                 <input type="text" name="vehicle_number" class="mt-1 block w-full border-gray-300 rounded" value="{{ $customer->vehicle_number }}" required>
